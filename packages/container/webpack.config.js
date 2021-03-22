@@ -1,13 +1,10 @@
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const path = require('path');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
 
 const cssResourcesPath = require(path.join(
@@ -111,18 +108,15 @@ module.exports = (env, argv) => {
       ]
     },
     plugins: [
-      new ModuleFederationPlugin(
-        isDev
-          ? {
-              name: 'container',
-              filename: 'remoteEntry.js',
-              remotes: {
-                auth: 'auth@http://localhost:8081/remoteEntry.js'
-              },
-              shared: ['react', 'react-dom']
-            }
-          : {}
-      ),
+      new ModuleFederationPlugin({
+        name: 'container',
+        remotes: {
+          auth: isDev
+            ? 'auth@http://localhost:8081/remoteEntry.js'
+            : `auth@${process.env.PRODUCTION_DOMAIN}/auth/remoteEntry.js`
+        },
+        shared: ['react', 'react-dom']
+      }),
       new CleanWebpackPlugin({
         cleanOnceBeforeBuildPatterns: 'dist'
       }),
@@ -152,10 +146,6 @@ module.exports = (env, argv) => {
 
   if (!isDev) {
     config.plugins.push(new CompressionPlugin());
-    config.optimization.minimizer.push(
-      ...[new OptimizeCSSAssetsPlugin(), new TerserPlugin()]
-    );
-    config.plugins.push(new BundleAnalyzerPlugin());
   } else {
     config.plugins.push(new ReactRefreshWebpackPlugin());
   }
