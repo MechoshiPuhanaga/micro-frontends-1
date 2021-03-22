@@ -1,0 +1,12 @@
+# depandencies:
+node_modules
+
+# build artifacts:
+dist
+
+# ide:
+.idea
+.vscode
+
+# logs
+yarn-error.log

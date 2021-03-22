@@ -1,0 +1,15 @@
+
+{
+    "compilerOptions": {
+      "baseUrl": "src",
+      "paths": {
+        "@components": ["./components"],
+        "@components/*": ["./components/*"],
+        "@pages": ["./pages"],
+        "@pages/*": ["./pages/*"],
+        "@services": ["./services"],
+        "@services/*": ["./services/*"]
+      }
+    },
+    "exclude": ["node_modules", "dist"]
+  }
