@@ -113,7 +113,7 @@ module.exports = (env, argv) => {
         remotes: {
           auth: isDev
             ? 'auth@http://localhost:8081/remoteEntry.js'
-            : `auth@${process.env.PRODUCTION_DOMAIN}/auth/remoteEntry.js`
+            : `auth@${process.env.PRODUCTION_DOMAIN}/auth/latest/remoteEntry.js`
         },
         shared: ['react', 'react-dom']
       }),
