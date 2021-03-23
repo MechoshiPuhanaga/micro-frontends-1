@@ -28,7 +28,7 @@ module.exports = (env, argv) => {
         ? 'public/[name].chunk.js'
         : 'public/[name].chunk.[chunkhash].js',
       path: path.resolve(__dirname, 'dist'),
-      publicPath: '/'
+      publicPath: isDev ? '/' : '/container/latest/'
     },
     resolve: {
       alias: {
