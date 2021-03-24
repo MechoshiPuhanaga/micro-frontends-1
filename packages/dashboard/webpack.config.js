@@ -4,7 +4,7 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 const path = require('path');
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const { VueLoaderPlugin } = require('vue-loader');
 const webpack = require('webpack');
 
 const cssResourcesPath = require(path.join(
@@ -19,24 +19,23 @@ module.exports = (env, argv) => {
   const isDev = argv.mode === 'development';
 
   const config = {
-    entry: {
-      app: './src/index.js'
-    },
+    entry: './src/index.js',
     output: {
       filename: isDev ? 'public/[name].js' : 'public/[name].[chunkhash].js',
       chunkFilename: isDev
         ? 'public/[name].chunk.js'
         : 'public/[name].chunk.[chunkhash].js',
       path: path.resolve(__dirname, 'dist'),
-      publicPath: isDev ? '/' : '/container/latest/'
+      publicPath: isDev ? 'http://localhost:8082/' : '/dashboard/latest/'
     },
     resolve: {
       alias: {
+        vue$: 'vue/dist/vue.runtime.esm.js',
         '@components': path.resolve(__dirname, 'src/components'),
         '@pages': path.resolve(__dirname, 'src/pages'),
         '@services': path.resolve(__dirname, 'src/services')
       },
-      extensions: ['.js', '.jsx', '.scss']
+      extensions: ['*', '.js', '.vue', '.json']
     },
     module: {
       rules: [
@@ -45,16 +44,15 @@ module.exports = (env, argv) => {
           use: { loader: 'worker-loader' }
         },
         {
-          test: /\.jsx?$/,
+          test: /\.js?$/,
           exclude: /node_modules/,
           use: {
-            loader: 'babel-loader',
-            options: {
-              plugins: [isDev && require.resolve('react-refresh/babel')].filter(
-                Boolean
-              )
-            }
+            loader: 'babel-loader'
           }
+        },
+        {
+          test: /\.vue$/,
+          loader: 'vue-loader'
         },
         {
           test: /\.(woff|woff2|ttf|eot)$/,
@@ -76,12 +74,13 @@ module.exports = (env, argv) => {
             {
               loader: MiniCssExtractPlugin.loader
             },
+
             {
               loader: 'css-loader',
               options: {
                 importLoaders: 3,
                 modules: {
-                  localIdentName: '[name]__[local]__[hash:base64:5]'
+                  localIdentName: '[name]__[local]__dashboard__[hash:base64:5]'
                 },
                 sourceMap: true
               }
@@ -108,17 +107,14 @@ module.exports = (env, argv) => {
       ]
     },
     plugins: [
+      new VueLoaderPlugin(),
       new ModuleFederationPlugin({
-        name: 'container',
-        remotes: {
-          auth: isDev
-            ? 'auth@http://localhost:8081/remoteEntry.js'
-            : `auth@${process.env.PRODUCTION_DOMAIN}/auth/latest/remoteEntry.js`,
-          dashboard: isDev
-            ? 'dashboard@http://localhost:8082/remoteEntry.js'
-            : `dashboard@${process.env.PRODUCTION_DOMAIN}/dashboard/latest/remoteEntry.js`
+        name: 'dashboard',
+        filename: 'remoteEntry.js',
+        exposes: {
+          './DashboardApp': './src/bootstrap'
         },
-        shared: ['react', 'react-dom']
+        shared: []
       }),
       new CleanWebpackPlugin({
         cleanOnceBeforeBuildPatterns: 'dist'
@@ -142,15 +138,13 @@ module.exports = (env, argv) => {
       hot: true,
       noInfo: true,
       open: true,
-      port: 8080,
+      port: 8082,
       stats: 'minimal'
     }
   };
 
   if (!isDev) {
     config.plugins.push(new CompressionPlugin());
-  } else {
-    config.plugins.push(new ReactRefreshWebpackPlugin());
   }
 
   return config;

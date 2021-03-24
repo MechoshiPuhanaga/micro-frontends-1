@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
-import { BrowserRouter, Link, Route } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 
-import { LazyAuth, LazyHome } from '@pages';
+import { LazyAuth, LazyDashboard, LazyHome } from '@pages';
 
 import styles from './App.scss';
 
@@ -13,12 +13,16 @@ const App = () => {
         <BrowserRouter>
           <nav>
             <Link to="/">Home</Link>
+            <Link to="/dashboard">Dashboard</Link>
             <Link to="/login">Login</Link>
             <Link to="/register">Register</Link>
           </nav>
-          <Route path="/login" component={LazyAuth} />
-          <Route path="/register" component={LazyAuth} />
-          <Route path="/" component={LazyHome} />
+          <Switch>
+            <Route path="/dashboard" component={LazyDashboard} />
+            <Route path="/login" component={LazyAuth} />
+            <Route path="/register" component={LazyAuth} />
+            <Route path="/" component={LazyHome} />
+          </Switch>
         </BrowserRouter>
       </Suspense>
     </main>
