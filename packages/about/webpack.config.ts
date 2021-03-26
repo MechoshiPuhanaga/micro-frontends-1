@@ -10,6 +10,8 @@ import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
 import webpack from 'webpack';
 import CopyPlugin from 'copy-webpack-plugin';
+// @ts-ignore
+import ModuleFederationPlugin from 'webpack/lib/container/ModuleFederationPlugin';
 
 import cssResourcesPath from './src/styles/shared';
 import generateAliases from './aliases';
@@ -33,7 +35,7 @@ module.exports = (env: string, argv: { mode: string }) => {
       // Otput root directory
       path: path.resolve(__dirname, 'dist'),
       // Tells webpack where to serve public assets from related to base url. In order to run index.html from Live Server just pass '/dist/'
-      publicPath: '/'
+      publicPath: isDev ? 'http://localhost:8083/' : '/about/latest/'
     },
     resolve: {
       // Passes alias cofiguration object
@@ -133,6 +135,15 @@ module.exports = (env: string, argv: { mode: string }) => {
       ]
     },
     plugins: [
+      new ModuleFederationPlugin({
+        name: 'about',
+        filename: 'remoteEntry.js',
+        exposes: {
+          './AboutApp': './src/bootstrap'
+        }
+        //shared: ['react', 'react-dom']
+      }),
+
       // Speeds up TypeScript type checking and ESLint linting (by moving each to a separate process)
       new ForkTsCheckerWebpackPlugin({
         // async flag to tell Webpack to wait for the type checking process to finish before it emits any code
