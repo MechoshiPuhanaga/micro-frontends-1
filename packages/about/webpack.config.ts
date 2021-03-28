@@ -59,7 +59,7 @@ module.exports = (env: string, argv: { mode: string }) => {
             loader: 'babel-loader',
             options: {
               // react-refresh/babel plugin for hot reload
-              plugins: [isDev && require.resolve('react-refresh/babel')].filter(Boolean)
+              // plugins: [isDev && require.resolve('react-refresh/babel')].filter(Boolean)
             }
           }
         },
@@ -189,11 +189,10 @@ module.exports = (env: string, argv: { mode: string }) => {
     // Optimization config
     optimization: {
       // Define manifest chunk that provides separate chunks binding
-      runtimeChunk: {
-        // TODO ModuleFederationPlugin requires runtimeChunk name fix
-        //name: 'runtime'
-      },
-      //
+      // runtimeChunk: {
+      //   // TODO ModuleFederationPlugin requires runtimeChunk name fix
+      //   name: 'runtime'
+      // },
       splitChunks: {
         // Split everything to chunks,
         // including lazy loaded code
@@ -226,7 +225,7 @@ module.exports = (env: string, argv: { mode: string }) => {
       historyApiFallback: {
         index: 'http://localhost:8083'
       },
-      hot: true,
+      // hot: true,
       noInfo: true,
       open: true,
       stats: 'minimal'
@@ -241,8 +240,8 @@ module.exports = (env: string, argv: { mode: string }) => {
     // Add BundelAnalyzerPlugin for tracking build size
     config.plugins.push(new BundleAnalyzerPlugin());
   } else {
-    // Hot reload in dev with ReactRefreshWebpackPlugin
-    config.plugins.push(new ReactRefreshWebpackPlugin());
+    // config.plugins.push(new webpack.HotModuleReplacementPlugin());
+    // config.plugins.push(new ReactRefreshWebpackPlugin());
   }
 
   return config;

@@ -3,10 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 import { mount } from 'about/AboutApp';
 
-console.log('mount: ', mount);
-
 const AboutApp = () => {
-  console.log('mounted About');
   const root = useRef(null);
   const history = useHistory();
 
