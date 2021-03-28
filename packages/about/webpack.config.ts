@@ -190,7 +190,8 @@ module.exports = (env: string, argv: { mode: string }) => {
     optimization: {
       // Define manifest chunk that provides separate chunks binding
       runtimeChunk: {
-        name: 'runtime'
+        // TODO ModuleFederationPlugin requires runtimeChunk name fix
+        //name: 'runtime'
       },
       //
       splitChunks: {
