@@ -2,9 +2,9 @@ import React, { memo } from 'react';
 
 const Home = () => {
   return (
-    <section>
+    <div style={{ padding: '2rem' }}>
       <h1>Home page</h1>
-    </section>
+    </div>
   );
 };
 

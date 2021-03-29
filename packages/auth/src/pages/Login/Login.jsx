@@ -3,7 +3,7 @@ import React, { memo } from 'react';
 import styles from './Login.scss';
 
 const Login = () => {
-  return <section className={styles.Container}>Login</section>;
+  return <h1>Login</h1>;
 };
 
 export default memo(Login);

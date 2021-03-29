@@ -1,6 +1,7 @@
 <template>
   <div :class="$style.app">
-      <h1>Dashboard</h1>
+    <h1>Dashboard</h1>
+    <div :class="$style.logo" />
     <div :class="$style.nav">
       <router-link to="/dashboard/tab-1">Tab 1</router-link>
       <router-link to="/dashboard/tab-2">Tab 2</router-link>
@@ -10,7 +11,8 @@
 </template>
 
 <style lang="scss" module>
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap");
+@import url('./styles/index.scss');
+//@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
 
 .app {
   --font: Roboto, sans-serif;
@@ -22,24 +24,40 @@
   text-align: center;
   padding: 2rem;
   color: var(--textColor);
-  background-color: lightgray;
+
+  h1 {
+    color: #41b783;
+    text-shadow: 0 0 0.2rem $color14;
+  }
 
   .logo {
-    width: 20%;
+    display: inline-block;
+    width: 20rem;
+    height: 20rem;
+    background: transparent url('./assets/1200px-Vue.js_Logo_2.svg.png')
+      no-repeat;
+    background-size: contain;
+    background-position: center;
   }
 }
 
 .nav {
-  padding: 30px 0 100px 0;
+  padding: 2rem 0 10rem 0;
 
   a {
-    font-weight: 500;
-    color: var(--textColor);
-    margin: 0 5px;
+    display: inline-block;
+    padding: 1.5rem;
+    margin: 0.5rem;
+    color: $color4;
+    font-size: 1.4rem;
+    background-color: $color9;
+    border: 1px solid $color8;
+    border-radius: 0.5rem;
   }
 
   :global a.router-link-exact-active {
-    color: var(--linkActiveColor);
+    color: $color14;
+    box-shadow: 0 0.1rem 0.1rem $color14;
   }
 }
 </style>

@@ -7,24 +7,48 @@ import styles from './App.scss';
 
 const App = () => {
   return (
-    <main className={styles.App}>
+    <main className={styles.AppContainer}>
       <h1>Container App</h1>
       <Suspense fallback={<div>Loading...</div>}>
         <BrowserRouter>
           <nav>
-            <NavLink activeClassName={styles.LinkActive} exact to="/">
+            <NavLink
+              className={styles.Link}
+              activeClassName={styles.LinkActive}
+              exact
+              to="/"
+            >
               Home
             </NavLink>
-            <NavLink activeClassName={styles.LinkActive} exact to="/dashboard">
+            <NavLink
+              className={styles.Link}
+              activeClassName={styles.LinkActive}
+              to="/dashboard"
+            >
               Dashboard
             </NavLink>
-            <NavLink activeClassName={styles.LinkActive} exact to="/about">
+            <NavLink
+              className={styles.Link}
+              activeClassName={styles.LinkActive}
+              exact
+              to="/about"
+            >
               About
             </NavLink>
-            <NavLink activeClassName={styles.LinkActive} exact to="/login">
+            <NavLink
+              className={styles.Link}
+              activeClassName={styles.LinkActive}
+              exact
+              to="/login"
+            >
               Login
             </NavLink>
-            <NavLink activeClassName={styles.LinkActive} exact to="/register">
+            <NavLink
+              className={styles.Link}
+              activeClassName={styles.LinkActive}
+              exact
+              to="/register"
+            >
               Register
             </NavLink>
           </nav>

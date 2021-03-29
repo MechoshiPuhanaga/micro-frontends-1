@@ -1,0 +1,18 @@
+.AppAbout {
+  padding: 2rem;
+  text-align: center;
+
+  h1 {
+    color: $color2;
+    text-shadow: 0 0 0.2rem $color10;
+  }
+
+  .Logo {
+    display: inline-block;
+    width: 20rem;
+    height: 20rem;
+    background: url("#{$recourcePath}/image/react_logo.png") no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
+}

@@ -1,18 +1,38 @@
-.App {
-    min-height: 101vh;
-    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-    color: $colorTxt;
-    background-color: $colorBkg;
-    user-select: none;
-  
-    * {
-      box-sizing: border-box;
-    }
-  
-    ul,
-    li {
-      margin: 0;
-      padding: 0;
+.AppAuth {
+  padding: 2rem;
+  text-align: center;
+
+  h1 {
+    color: $color11;
+    text-shadow: 0 0 0.2rem $color14;
+  }
+
+  .Logo {
+    display: inline-block;
+    width: 20rem;
+    height: 20rem;
+    background: url("#{$recourcePath}/image/react_logo.png") no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
+
+  nav {
+    padding: 2rem 0 10rem 0;
+
+    .Link {
+      display: inline-block;
+      padding: 1.5rem;
+      margin: 0.5rem;
+      color: $color4;
+      font-size: 1.4rem;
+      background-color: $color9;
+      border: 1px solid $color8;
+      border-radius: 0.5rem;
+
+      &.LinkActive {
+        color: $color14;
+        box-shadow: 0 0.1rem 0.1rem $color14;
+      }
     }
   }
-  
+}
