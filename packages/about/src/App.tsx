@@ -1,16 +1,33 @@
-import { FC, memo } from 'react';
+import { FC, memo, Suspense } from 'react';
+import { NavLink, Route, Router, Switch } from 'react-router-dom';
+import { History } from 'history';
 
-import { Dashboard } from '@components';
+import { LazyContacts, LazyProfile } from './components';
 
 import styles from './App.scss';
 
-const App: FC<{ history: History | unknown }> = () => {
+const App: FC<{ history: History }> = ({ history }) => {
   return (
-    <div className={styles.AppAbout}>
+    <main className={styles.App}>
       <h1>About</h1>
       <div className={styles.Logo} />
-      {/* <Dashboard /> */}
-    </div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Router history={history}>
+          <nav>
+            <NavLink className={styles.Link} activeClassName={styles.LinkActive} to="/profile">
+              Profile
+            </NavLink>
+            <NavLink className={styles.Link} activeClassName={styles.LinkActive} to="/contacts">
+              Contacts
+            </NavLink>
+          </nav>
+          <Switch>
+            <Route path="/profile" component={LazyProfile} />
+            <Route path="/contacts" component={LazyContacts} />
+          </Switch>
+        </Router>
+      </Suspense>
+    </main>
   );
 };
 

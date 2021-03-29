@@ -7,7 +7,7 @@ import styles from './App.scss';
 
 const App = () => {
   return (
-    <main className={styles.AppContainer}>
+    <main className={styles.App}>
       <h1>Container App</h1>
       <Suspense fallback={<div>Loading...</div>}>
         <BrowserRouter>

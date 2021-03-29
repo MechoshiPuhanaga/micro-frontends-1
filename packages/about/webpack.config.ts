@@ -105,7 +105,7 @@ module.exports = (env: string, argv: { mode: string }) => {
                 importLoaders: 3,
                 modules: {
                   // Add .scss module file naming
-                  localIdentName: '[name]__[local]__[hash:base64:5]'
+                  localIdentName: '[name]__[local]__about__[hash:base64:5]'
                 },
                 sourceMap: true
               }
@@ -187,44 +187,42 @@ module.exports = (env: string, argv: { mode: string }) => {
     // https://medium.com/hackernoon/the-100-correct-way-to-split-your-chunks-with-webpack-f8a9df5b7758
     // https://blog.logrocket.com/guide-performance-optimization-webpack/
     // Optimization config
-    optimization: {
-      // Define manifest chunk that provides separate chunks binding
-      // runtimeChunk: {
-      //   // TODO ModuleFederationPlugin requires runtimeChunk name fix
-      //   name: 'runtime'
-      // },
-      splitChunks: {
-        // Split everything to chunks,
-        // including lazy loaded code
-        chunks: 'all',
-        // Maximum number of parallel requests at an entry point
-        maxInitialRequests: Infinity,
-        // Remove limit 30 (Minimum size, in bytes, for a chunk to be generated) for enabling chunk splitting
-        minSize: 0,
-        cacheGroups: {
-          vendor: {
-            test: /node_modules/,
-            name(module: { context: { match: (arg0: RegExp) => any[] } }) {
-              // get the name. E.g. node_modules/packageName/not/this/part.js
-              // or node_modules/packageName
-              const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+    // optimization: {
+    //   // Define manifest chunk that provides separate chunks binding
+    //   runtimeChunk: {
+    //     // TODO ModuleFederationPlugin requires runtimeChunk name fix
+    //     name: 'runtime'
+    //   },
+    //   splitChunks: {
+    //     // Split everything to chunks,
+    //     // including lazy loaded code
+    //     chunks: 'all',
+    //     // Maximum number of parallel requests at an entry point
+    //     maxInitialRequests: Infinity,
+    //     // Remove limit 30 (Minimum size, in bytes, for a chunk to be generated) for enabling chunk splitting
+    //     minSize: 0,
+    //     cacheGroups: {
+    //       vendor: {
+    //         test: /node_modules/,
+    //         name(module: { context: { match: (arg0: RegExp) => any[] } }) {
+    //           // get the name. E.g. node_modules/packageName/not/this/part.js
+    //           // or node_modules/packageName
+    //           const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
 
-              // npm package names are URL-safe, but some servers don't like @ symbols
-              return `npm.${packageName.replace('@', '')}`;
-            }
-          }
-        }
-      },
-      minimizer: []
-    },
+    //           // npm package names are URL-safe, but some servers don't like @ symbols
+    //           return `npm.${packageName.replace('@', '')}`;
+    //         }
+    //       }
+    //     }
+    //   },
+    //   minimizer: []
+    // },
     // source-map in prod adds only a URL string to the .map file
     devtool: isDev ? 'eval-source-map' : 'source-map',
     devServer: {
       clientLogLevel: 'silent',
       port: 8083,
-      historyApiFallback: {
-        index: 'http://localhost:8083'
-      },
+      historyApiFallback: true,
       // hot: true,
       noInfo: true,
       open: true,
@@ -236,7 +234,7 @@ module.exports = (env: string, argv: { mode: string }) => {
     // Compress in prod
     config.plugins.push(new CompressionPlugin());
     // Add TerserPlugin (default Webpack minimizer) and CssMinimizerPlugin
-    (config.optimization.minimizer as any).push(new TerserPlugin(), new CssMinimizerPlugin());
+    // (config.optimization.minimizer as any).push(new TerserPlugin(), new CssMinimizerPlugin());
     // Add BundelAnalyzerPlugin for tracking build size
     config.plugins.push(new BundleAnalyzerPlugin());
   } else {

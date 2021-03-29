@@ -13,6 +13,8 @@ const AboutApp = () => {
       onNavigate: ({ pathname: nextPathname }) => {
         const { pathname } = history.location;
 
+        console.log('pathname: ', pathname);
+
         if (nextPathname !== pathname) {
           history.push(nextPathname);
         }

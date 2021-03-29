@@ -8,7 +8,7 @@ import styles from './App.scss';
 
 const App = ({ history }) => {
   return (
-    <main className={styles.AppAuth}>
+    <main className={styles.App}>
       <h1>Auth</h1>
       <div className={styles.Logo} />
       <Suspense fallback={<div>Loading...</div>}>

@@ -1,1 +1,4 @@
-export { default as Dashboard } from './Dashboard/Dashboard';
+import { lazy } from 'react';
+
+export const LazyContacts = lazy(() => import('./Contacts/Contacts'));
+export const LazyProfile = lazy(() => import('./Profile/Profile'));
