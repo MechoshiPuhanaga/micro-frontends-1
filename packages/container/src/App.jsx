@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, NavLink, Route, Switch } from 'react-router-dom';
 
 import { LazyAbout, LazyAuth, LazyDashboard, LazyHome } from '@pages';
 
@@ -12,11 +12,21 @@ const App = () => {
       <Suspense fallback={<div>Loading...</div>}>
         <BrowserRouter>
           <nav>
-            <Link to="/">Home</Link>
-            <Link to="/dashboard">Dashboard</Link>
-            <Link to="/about">About</Link>
-            <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
+            <NavLink activeClassName={styles.LinkActive} exact to="/">
+              Home
+            </NavLink>
+            <NavLink activeClassName={styles.LinkActive} exact to="/dashboard">
+              Dashboard
+            </NavLink>
+            <NavLink activeClassName={styles.LinkActive} exact to="/about">
+              About
+            </NavLink>
+            <NavLink activeClassName={styles.LinkActive} exact to="/login">
+              Login
+            </NavLink>
+            <NavLink activeClassName={styles.LinkActive} exact to="/register">
+              Register
+            </NavLink>
           </nav>
           <Switch>
             <Route path="/dashboard" component={LazyDashboard} />
