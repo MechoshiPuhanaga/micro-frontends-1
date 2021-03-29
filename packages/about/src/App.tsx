@@ -7,6 +7,7 @@ import { LazyContacts, LazyProfile } from './components';
 import styles from './App.scss';
 
 const App: FC<{ history: History }> = ({ history }) => {
+  console.log('ABOUT history.location: ', history.location);
   return (
     <main className={styles.App}>
       <h1>About</h1>
@@ -22,8 +23,8 @@ const App: FC<{ history: History }> = ({ history }) => {
             </NavLink>
           </nav>
           <Switch>
-            <Route path="/profile" component={LazyProfile} />
-            <Route path="/contacts" component={LazyContacts} />
+            <Route path={['/profile', '/about/profile']} component={LazyProfile} />
+            <Route path={['/contacts', '/about/contacts']} component={LazyContacts} />
           </Switch>
         </Router>
       </Suspense>

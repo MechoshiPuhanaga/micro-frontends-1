@@ -30,7 +30,6 @@ const App = () => {
             <NavLink
               className={styles.Link}
               activeClassName={styles.LinkActive}
-              exact
               to="/about"
             >
               About
@@ -38,7 +37,6 @@ const App = () => {
             <NavLink
               className={styles.Link}
               activeClassName={styles.LinkActive}
-              exact
               to="/login"
             >
               Login
@@ -46,7 +44,6 @@ const App = () => {
             <NavLink
               className={styles.Link}
               activeClassName={styles.LinkActive}
-              exact
               to="/register"
             >
               Register

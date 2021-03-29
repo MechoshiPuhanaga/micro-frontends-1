@@ -44,7 +44,7 @@ const mount = (
 
 if (process.env.NODE_ENV === 'development') {
   const devRoot = document.getElementById('micro-frontend-about');
-  console.log('devRoot: ', devRoot);
+
   if (devRoot) {
     mount(devRoot, { defaultHistory: createBrowserHistory(), initialPath: '', onNavigate: null });
   }
