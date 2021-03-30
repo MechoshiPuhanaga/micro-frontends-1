@@ -1,0 +1,17 @@
+# dependencies:
+node_modules
+
+# ide:
+.idea
+.vscode
+
+# built code
+dist
+out
+
+# logs
+yarn-error.log
+
+# files
+# package-lock.json
+# yarn.lock

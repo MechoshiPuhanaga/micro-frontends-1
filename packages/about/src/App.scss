@@ -3,11 +3,11 @@
   text-align: center;
 
   h1 {
-    color: $color11;
-    text-shadow: 0 0 0.2rem $color14;
+    color: $color2;
+    text-shadow: 0 0 0.2rem $color10;
   }
 
-  .LogoJs,
+  .LogoTs,
   .LogoReact {
     display: inline-block;
     width: 20rem;
@@ -18,8 +18,8 @@
     background-position: center;
   }
 
-  .LogoJs {
-    background-image: url("#{$recourcePath}/image/js_logo.png");
+  .LogoTs {
+    background-image: url("#{$recourcePath}/image/typescript_logo.png");
   }
 
   .LogoReact {

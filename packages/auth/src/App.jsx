@@ -1,5 +1,5 @@
 import React, { lazy, memo, Suspense } from 'react';
-import { Link, Route, Router, Switch } from 'react-router-dom';
+import { NavLink, Route, Router, Switch } from 'react-router-dom';
 
 const LazyLogin = lazy(() => import('./pages/Login/Login'));
 const LazyRegister = lazy(() => import('./pages/Register/Register'));
@@ -10,11 +10,25 @@ const App = ({ history }) => {
   return (
     <main className={styles.App}>
       <h1>Auth</h1>
+      <div className={styles.LogoJs} />
+      <div className={styles.LogoReact} />
       <Suspense fallback={<div>Loading...</div>}>
         <Router history={history}>
           <nav>
-            <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
+            <NavLink
+              className={styles.Link}
+              activeClassName={styles.LinkActive}
+              to="/login"
+            >
+              Login
+            </NavLink>
+            <NavLink
+              className={styles.Link}
+              activeClassName={styles.LinkActive}
+              to="/register"
+            >
+              Register
+            </NavLink>
           </nav>
           <Switch>
             <Route path="/login" component={LazyLogin} />

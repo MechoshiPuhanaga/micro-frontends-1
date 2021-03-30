@@ -1,0 +1,15 @@
+{
+  "presets": [
+    "@babel/preset-typescript",
+    "@babel/preset-env",
+    // To enable the new transform (react ^17, typescript ^4.1), you can pass {"runtime": "automatic"}
+    // as an option to @babel/plugin-transform-react-jsx or @babel/preset-react
+    ["@babel/preset-react", { "runtime": "automatic" }]
+  ],
+  "plugins": [
+    // Use babel-plugin-transform-runtime instead of babel-polyfill
+    // babel-plugin-transform-runtime allows to reduce size of the
+    // resulting bundle dramatically
+    "@babel/plugin-transform-runtime"
+  ]
+}
