@@ -13,46 +13,47 @@ const App = () => {
         <div className={styles.LogoJs} />
         <div className={styles.LogoReact} />
       </div>
-      <Suspense fallback={<div>Loading...</div>}>
-        <BrowserRouter>
-          <nav>
-            <NavLink
-              className={styles.Link}
-              activeClassName={styles.LinkActive}
-              exact
-              to="/"
-            >
-              Home
-            </NavLink>
-            <NavLink
-              className={styles.Link}
-              activeClassName={styles.LinkActive}
-              to="/dashboard"
-            >
-              Dashboard
-            </NavLink>
-            <NavLink
-              className={styles.Link}
-              activeClassName={styles.LinkActive}
-              to="/about"
-            >
-              About
-            </NavLink>
-            <NavLink
-              className={styles.Link}
-              activeClassName={styles.LinkActive}
-              to="/login"
-            >
-              Login
-            </NavLink>
-            <NavLink
-              className={styles.Link}
-              activeClassName={styles.LinkActive}
-              to="/register"
-            >
-              Register
-            </NavLink>
-          </nav>
+
+      <BrowserRouter>
+        <nav>
+          <NavLink
+            className={styles.Link}
+            activeClassName={styles.LinkActive}
+            exact
+            to="/"
+          >
+            Home
+          </NavLink>
+          <NavLink
+            className={styles.Link}
+            activeClassName={styles.LinkActive}
+            to="/dashboard"
+          >
+            Dashboard
+          </NavLink>
+          <NavLink
+            className={styles.Link}
+            activeClassName={styles.LinkActive}
+            to="/about"
+          >
+            About
+          </NavLink>
+          <NavLink
+            className={styles.Link}
+            activeClassName={styles.LinkActive}
+            to="/login"
+          >
+            Login
+          </NavLink>
+          <NavLink
+            className={styles.Link}
+            activeClassName={styles.LinkActive}
+            to="/register"
+          >
+            Register
+          </NavLink>
+        </nav>
+        <Suspense fallback={<div>Loading...</div>}>
           <Switch>
             <Route path="/dashboard" component={LazyDashboard} />
             <Route path="/about" component={LazyAbout} />
@@ -60,8 +61,8 @@ const App = () => {
             <Route path="/register" component={LazyAuth} />
             <Route path="/" component={LazyHome} />
           </Switch>
-        </BrowserRouter>
-      </Suspense>
+        </Suspense>
+      </BrowserRouter>
     </main>
   );
 };

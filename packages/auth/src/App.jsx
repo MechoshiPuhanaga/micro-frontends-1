@@ -12,30 +12,31 @@ const App = ({ history }) => {
       <h1>Auth</h1>
       <div className={styles.LogoJs} />
       <div className={styles.LogoReact} />
-      <Suspense fallback={<div>Loading...</div>}>
-        <Router history={history}>
-          <nav>
-            <NavLink
-              className={styles.Link}
-              activeClassName={styles.LinkActive}
-              to="/login"
-            >
-              Login
-            </NavLink>
-            <NavLink
-              className={styles.Link}
-              activeClassName={styles.LinkActive}
-              to="/register"
-            >
-              Register
-            </NavLink>
-          </nav>
+
+      <Router history={history}>
+        <nav>
+          <NavLink
+            className={styles.Link}
+            activeClassName={styles.LinkActive}
+            to="/login"
+          >
+            Login
+          </NavLink>
+          <NavLink
+            className={styles.Link}
+            activeClassName={styles.LinkActive}
+            to="/register"
+          >
+            Register
+          </NavLink>
+        </nav>
+        <Suspense fallback={<div>Loading...</div>}>
           <Switch>
             <Route path="/login" component={LazyLogin} />
             <Route path="/register" component={LazyRegister} />
           </Switch>
-        </Router>
-      </Suspense>
+        </Suspense>
+      </Router>
     </main>
   );
 };

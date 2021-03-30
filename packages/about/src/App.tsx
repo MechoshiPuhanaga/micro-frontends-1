@@ -29,28 +29,29 @@ const App: FC<{ history: History }> = ({ history }) => {
       <h1>About</h1>
       <div className={styles.LogoTs} />
       <div className={styles.LogoReact} />
-      <Suspense fallback={<div>Loading...</div>}>
-        <Router history={history}>
-          <nav>
-            <NavLink
-              className={`${styles.Link} ${activeLinks.profile ? styles.LinkActive : ''}`}
-              to="/profile"
-            >
-              Profile
-            </NavLink>
-            <NavLink
-              className={`${styles.Link} ${activeLinks.contacts ? styles.LinkActive : ''}`}
-              to="/contacts"
-            >
-              Contacts
-            </NavLink>
-          </nav>
+
+      <Router history={history}>
+        <nav>
+          <NavLink
+            className={`${styles.Link} ${activeLinks.profile ? styles.LinkActive : ''}`}
+            to="/profile"
+          >
+            Profile
+          </NavLink>
+          <NavLink
+            className={`${styles.Link} ${activeLinks.contacts ? styles.LinkActive : ''}`}
+            to="/contacts"
+          >
+            Contacts
+          </NavLink>
+        </nav>
+        <Suspense fallback={<div>Loading...</div>}>
           <Switch>
             <Route path={['/profile', '/about/profile']} component={LazyProfile} />
             <Route path={['/contacts', '/about/contacts']} component={LazyContacts} />
           </Switch>
-        </Router>
-      </Suspense>
+        </Suspense>
+      </Router>
     </main>
   );
 };
