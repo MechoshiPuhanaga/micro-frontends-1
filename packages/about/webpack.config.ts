@@ -236,7 +236,7 @@ module.exports = (env: string, argv: { mode: string }) => {
     // Add TerserPlugin (default Webpack minimizer) and CssMinimizerPlugin
     // (config.optimization.minimizer as any).push(new TerserPlugin(), new CssMinimizerPlugin());
     // Add BundelAnalyzerPlugin for tracking build size
-    config.plugins.push(new BundleAnalyzerPlugin());
+    // config.plugins.push(new BundleAnalyzerPlugin());
   } else {
     // config.plugins.push(new webpack.HotModuleReplacementPlugin());
     // config.plugins.push(new ReactRefreshWebpackPlugin());

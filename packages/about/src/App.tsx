@@ -17,6 +17,8 @@ const App: FC<{ history: History }> = ({ history }) => {
   const [activeLinks, setActiveLinks] = useState(updateActiveLinks());
 
   useEffect(() => {
+    console.log('mount');
+
     history.listen(() => {
       setActiveLinks(updateActiveLinks());
     });
