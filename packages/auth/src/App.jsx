@@ -10,7 +10,8 @@ const App = ({ history }) => {
   return (
     <main className={styles.App}>
       <h1>Auth</h1>
-      <div className={styles.Logo} />
+      <div className={styles.LogoJs} />
+      <div className={styles.LogoReact} />
       <Suspense fallback={<div>Loading...</div>}>
         <Router history={history}>
           <nav>

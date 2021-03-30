@@ -7,17 +7,27 @@
     text-shadow: 0 0 0.2rem $color10;
   }
 
-  .Logo {
+  .LogoTs,
+  .LogoReact {
     display: inline-block;
     width: 20rem;
     height: 20rem;
-    background: url("#{$recourcePath}/image/react_logo.png") no-repeat;
+    margin: 2rem;
+    background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
   }
 
+  .LogoTs {
+    background-image: url("#{$recourcePath}/image/typescript_logo.png");
+  }
+
+  .LogoReact {
+    background-image: url("#{$recourcePath}/image/react_logo.png");
+  }
+
   nav {
-    padding: 2rem 0 10rem 0;
+    padding: 2rem 0 5rem 0;
 
     .Link {
       display: inline-block;
@@ -31,7 +41,7 @@
 
       &.LinkActive {
         color: $color14;
-        box-shadow: 0 0.1rem 0.1rem $color14;
+        box-shadow: 0 0.2rem 0.2rem $color14;
       }
     }
   }

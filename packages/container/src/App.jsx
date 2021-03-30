@@ -9,6 +9,10 @@ const App = () => {
   return (
     <main className={styles.App}>
       <h1>Container App</h1>
+      <div>
+        <div className={styles.LogoJs} />
+        <div className={styles.LogoReact} />
+      </div>
       <Suspense fallback={<div>Loading...</div>}>
         <BrowserRouter>
           <nav>

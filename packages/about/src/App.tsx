@@ -25,7 +25,8 @@ const App: FC<{ history: History }> = ({ history }) => {
   return (
     <main className={styles.App}>
       <h1>About</h1>
-      <div className={styles.Logo} />
+      <div className={styles.LogoTs} />
+      <div className={styles.LogoReact} />
       <Suspense fallback={<div>Loading...</div>}>
         <Router history={history}>
           <nav>

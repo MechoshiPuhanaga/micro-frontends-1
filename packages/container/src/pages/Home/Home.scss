@@ -1,0 +1,15 @@
+.Home {
+  padding: 2rem;
+  text-align: center;
+
+  .Logo {
+    display: inline-block;
+    width: 20rem;
+    height: 20rem;
+    margin: 2rem;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-image: url("#{$recourcePath}/image/home_page.png");
+  }
+}

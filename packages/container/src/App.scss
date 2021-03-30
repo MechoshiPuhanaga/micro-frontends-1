@@ -26,8 +26,23 @@
     padding: 0;
   }
 
-  .Logo {
-    //border: 1px solid red;
+  .LogoJs,
+  .LogoReact {
+    display: inline-block;
+    width: 5rem;
+    height: 5rem;
+    margin: 1rem;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
+
+  .LogoJs {
+    background-image: url("#{$recourcePath}/image/js_logo.png");
+  }
+
+  .LogoReact {
+    background-image: url("#{$recourcePath}/image/react_logo.png");
   }
 
   .Link {
@@ -42,7 +57,7 @@
 
     &.LinkActive {
       color: $color14;
-      box-shadow: 0 0.1rem 0.1rem $color14;
+      box-shadow: 0 0.2rem 0.2rem $color14;
     }
   }
 }

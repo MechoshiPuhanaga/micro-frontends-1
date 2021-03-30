@@ -1,7 +1,8 @@
 <template>
   <div :class="$style.app">
     <h1>Dashboard</h1>
-    <div :class="$style.logo" />
+    <div :class="$style.logoJs" />
+    <div :class="$style.logoVue" />
     <div :class="$style.nav">
       <router-link to="/dashboard/tab-1">Tab 1</router-link>
       <router-link to="/dashboard/tab-2">Tab 2</router-link>
@@ -30,19 +31,28 @@
     text-shadow: 0 0 0.2rem $color14;
   }
 
-  .logo {
+  .logoJs,
+  .logoVue {
     display: inline-block;
     width: 20rem;
     height: 20rem;
-    background: transparent url('./assets/1200px-Vue.js_Logo_2.svg.png')
-      no-repeat;
+    margin: 2rem;
+    background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
+  }
+
+  .logoJs {
+    background-image: url('./assets/js_logo.png');
+  }
+
+  .logoVue {
+    background-image: url('./assets/vue_logo.png');
   }
 }
 
 .nav {
-  padding: 2rem 0 10rem 0;
+  padding: 2rem 0 5rem 0;
 
   a {
     display: inline-block;
@@ -57,7 +67,7 @@
 
   :global a.router-link-exact-active {
     color: $color14;
-    box-shadow: 0 0.1rem 0.1rem $color14;
+    box-shadow: 0 0.2rem 0.2rem $color14;
   }
 }
 </style>
