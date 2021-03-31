@@ -82,19 +82,28 @@ module.exports = (env, argv) => {
                 loader: '@ngtools/webpack'
               })
         },
+        // {
+        //   test: /\.(woff|woff2|ttf|eot)$/,
+        //   type: 'asset/resource',
+        //   generator: {
+        //     filename: 'public/fonts/[name].[ext]'
+        //   }
+        // },
+        // {
+        //   test: /\.(png|jpe?g|gif|svg|ico)$/,
+        //   type: 'asset/resource',
+        //   generator: {
+        //     filename: 'public/images/[name].[ext]'
+        //   }
+        // },
         {
-          test: /\.(woff|woff2|ttf|eot)$/,
-          type: 'asset/resource',
-          generator: {
-            filename: 'public/fonts/[name].[ext]'
-          }
-        },
-        {
-          test: /\.(png|jpe?g|gif|svg|ico)$/,
-          type: 'asset/resource',
-          generator: {
-            filename: 'public/images/[name].[ext]'
-          }
+          test: /\.(jpeg|jpg|gif|png)$/,
+          use: [
+            {
+              loader: 'file-loader',
+              options: { name: 'public/images/[name].[ext]' }
+            }
+          ]
         },
         {
           test: /\.scss$/,

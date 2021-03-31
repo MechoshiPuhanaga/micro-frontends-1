@@ -58,6 +58,7 @@
     "eslint-plugin-prefer-arrow": "1.2.3",
     "express": "4.17.1",
     "express-static-gzip": "2.1.1",
+    "file-loader": "^6.2.0",
     "html-loader": "2.1.2",
     "html-webpack-plugin": "5.3.1",
     "mini-css-extract-plugin": "1.4.0",
