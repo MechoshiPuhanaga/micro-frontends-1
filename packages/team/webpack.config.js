@@ -22,7 +22,7 @@ module.exports = (env, argv) => {
     entry: {
       vendor: './src/vendor.ts',
       polyfills: './src/polyfills.ts',
-      main: isDev ? './src/main.ts' : './src/main.aot.ts'
+      main: './src/index.ts'
     },
     output: {
       filename: isDev ? 'public/[name].js' : 'public/[name].[chunkhash].js',
@@ -30,7 +30,7 @@ module.exports = (env, argv) => {
         ? 'public/[name].chunk.js'
         : 'public/[name].chunk.[chunkhash].js',
       path: path.resolve(__dirname, 'dist'),
-      publicPath: isDev ? 'http://localhost:8084/' : '/' //'/contacts/latest/'
+      publicPath: isDev ? 'http://localhost:8084/' : '/team/latest/'
     },
     resolve: {
       extensions: ['.ts', '.js', '.scss']
@@ -169,10 +169,10 @@ module.exports = (env, argv) => {
     },
     plugins: [
       new ModuleFederationPlugin({
-        name: 'contacts',
+        name: 'team',
         filename: 'remoteEntry.js',
         exposes: {
-          './ContactsApp': './src/bootstrap'
+          './TeamApp': './src/bootstrap'
         }
       }),
       new CleanWebpackPlugin({

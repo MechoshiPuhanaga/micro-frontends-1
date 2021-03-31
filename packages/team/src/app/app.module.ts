@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { APP_BASE_HREF } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -11,7 +12,7 @@ import '../assets/styles';
 @NgModule({
   declarations: [AppComponent, HomeComponent],
   imports: [BrowserModule, AppRoutingModule],
-  providers: [],
+  providers: [{ provide: APP_BASE_HREF, useValue: '/team' }],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
