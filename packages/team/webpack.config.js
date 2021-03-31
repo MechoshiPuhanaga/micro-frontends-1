@@ -12,7 +12,7 @@ const cssResourcesPath = require(path.join(
   'src',
   'styles',
   'shared',
-  'index.js'
+  'index.ts'
 ));
 
 module.exports = (env, argv) => {
