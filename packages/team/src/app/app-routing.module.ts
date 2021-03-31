@@ -4,7 +4,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './shared/components/home/home.component';
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent },
+  {
+    path: 'information',
+    loadChildren: './modules/information/information.module#InformationModule'
+  },
   { path: 'menu', loadChildren: './modules/menu/menu.module#MenuModule' }
 ];
 
