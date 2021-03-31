@@ -53,9 +53,13 @@ module.exports = (env, argv) => {
           use: { loader: 'worker-loader' }
         },
         {
-          // Mark files inside `@angular/core` as using SystemJS style dynamic imports.
-          test: /[\/\\]@angular[\/\\]core[\/\\].+\.js$/,
-          parser: { system: true }
+          ...(!isDev
+            ? {
+                // Mark files inside `@angular/core` as using SystemJS style dynamic imports.
+                test: /[\/\\]@angular[\/\\]core[\/\\].+\.js$/,
+                parser: { system: true }
+              }
+            : {})
         },
         {
           ...(isDev
@@ -190,7 +194,7 @@ module.exports = (env, argv) => {
     devServer: {
       clientLogLevel: 'silent',
       historyApiFallback: true,
-      hot: true,
+      // hot: true,
       noInfo: true,
       open: true,
       port: 8084,
