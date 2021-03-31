@@ -10,8 +10,8 @@ const App = () => {
     <main className={styles.App}>
       <h1>Container App</h1>
       <div>
-        <div className={styles.LogoJs} />
         <div className={styles.LogoReact} />
+        <div className={styles.LogoJs} />
       </div>
 
       <BrowserRouter>

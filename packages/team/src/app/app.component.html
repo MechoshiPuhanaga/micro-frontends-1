@@ -1,5 +1,10 @@
-<h1>{{ name }}</h1>
-<hr />
-<a routerLink="/">Contacts</a> | <a routerLink="/menu">Address</a>
-<hr />
-<router-outlet></router-outlet>
+<div class="app">
+  <h1>{{ name }}</h1>
+  <div class="logo-angular"></div>
+  <div class="logo-ts"></div>
+  <nav>
+    <a routerLink="/" [routerLinkActive]="['is-active']">Contacts</a>
+    <a routerLink="/menu" [routerLinkActive]="['is-active']">Address</a>
+  </nav>
+  <router-outlet></router-outlet>
+</div>

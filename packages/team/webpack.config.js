@@ -7,13 +7,13 @@ const ngw = require('@ngtools/webpack');
 const path = require('path');
 const webpack = require('webpack');
 
-// const cssResourcesPath = require(path.join(
-//   __dirname,
-//   "src",
-//   "styles",
-//   "shared",
-//   "index.js"
-// ));
+const cssResourcesPath = require(path.join(
+  __dirname,
+  'src',
+  'styles',
+  'shared',
+  'index.js'
+));
 
 module.exports = (env, argv) => {
   const isDev = argv.mode === 'development';
@@ -98,7 +98,7 @@ module.exports = (env, argv) => {
         },
         {
           test: /\.scss$/,
-          include: path.resolve(__dirname, 'src', 'assets'),
+          include: path.resolve(__dirname, 'src', 'styles'),
           use: [
             {
               loader: MiniCssExtractPlugin.loader
@@ -120,13 +120,13 @@ module.exports = (env, argv) => {
             },
             {
               loader: 'sass-loader'
+            },
+            {
+              loader: 'sass-resources-loader',
+              options: {
+                resources: cssResourcesPath
+              }
             }
-            // {
-            //   loader: "sass-resources-loader",
-            //   options: {
-            //     resources: cssResourcesPath,
-            //   },
-            // },
           ]
         },
         {
@@ -156,13 +156,13 @@ module.exports = (env, argv) => {
             },
             {
               loader: 'sass-loader'
+            },
+            {
+              loader: 'sass-resources-loader',
+              options: {
+                resources: cssResourcesPath
+              }
             }
-            // {
-            //   loader: "sass-resources-loader",
-            //   options: {
-            //     resources: cssResourcesPath,
-            //   },
-            // },
           ]
         }
       ].filter(Boolean)
