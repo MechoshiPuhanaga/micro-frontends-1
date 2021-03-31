@@ -53,6 +53,11 @@ module.exports = (env, argv) => {
           use: { loader: 'worker-loader' }
         },
         {
+          // Mark files inside `@angular/core` as using SystemJS style dynamic imports.
+          test: /[\/\\]@angular[\/\\]core[\/\\].+\.js$/,
+          parser: { system: true }
+        },
+        {
           ...(isDev
             ? {
                 test: /\.ts$/,
