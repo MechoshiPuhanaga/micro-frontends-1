@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ApplicationRef, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { APP_BASE_HREF } from '@angular/common';
 import { NavigationEnd, Router } from '@angular/router';
@@ -17,11 +17,8 @@ import '../styles/index.scss';
   declarations: [AppComponent, HomeComponent],
   imports: [BrowserModule, AppRoutingModule],
   providers: [{ provide: APP_BASE_HREF, useValue: '/team' }],
-  bootstrap: [AppComponent]
+  entryComponents: [AppComponent]
 })
-<<<<<<< Updated upstream
-export class AppModule {}
-=======
 export class AppModule {
   constructor(private _router: Router) {
     _router.events.subscribe((val) => {
@@ -43,4 +40,3 @@ export class AppModule {
     }
   }
 }
->>>>>>> Stashed changes
