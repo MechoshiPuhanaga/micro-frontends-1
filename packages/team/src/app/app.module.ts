@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ApplicationRef, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { APP_BASE_HREF } from '@angular/common';
 
@@ -13,6 +13,12 @@ import '../styles/index.scss';
   declarations: [AppComponent, HomeComponent],
   imports: [BrowserModule, AppRoutingModule],
   providers: [{ provide: APP_BASE_HREF, useValue: '/team' }],
-  bootstrap: [AppComponent]
+  entryComponents: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+  public ngDoBootstrap(appRef: ApplicationRef): void {
+    if (document.querySelector('app-root')) {
+      appRef.bootstrap(AppComponent);
+    }
+  }
+}
