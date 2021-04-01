@@ -8,7 +8,7 @@ const appRoutes: Routes = [
     path: 'information',
     loadChildren: './modules/information/information.module#InformationModule'
   },
-  { path: 'menu', loadChildren: './modules/menu/menu.module#MenuModule' }
+  { path: 'address', loadChildren: './modules/menu/menu.module#MenuModule' }
 ];
 
 @NgModule({
