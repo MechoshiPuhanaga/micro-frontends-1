@@ -119,7 +119,10 @@ module.exports = (env, argv) => {
             : `dashboard@${process.env.PRODUCTION_DOMAIN}/dashboard/latest/remoteEntry.js`,
           about: isDev
             ? 'about@http://localhost:8083/remoteEntry.js'
-            : `about@${process.env.PRODUCTION_DOMAIN}/about/latest/remoteEntry.js`
+            : `about@${process.env.PRODUCTION_DOMAIN}/about/latest/remoteEntry.js`,
+          team: isDev
+            ? 'team@http://localhost:8084/remoteEntry.js'
+            : `team@${process.env.PRODUCTION_DOMAIN}/team/latest/remoteEntry.js`
         },
         shared: ['react', 'react-dom']
       }),

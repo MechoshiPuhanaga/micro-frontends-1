@@ -17,8 +17,6 @@ const App: FC<{ history: History }> = ({ history }) => {
   const [activeLinks, setActiveLinks] = useState(updateActiveLinks());
 
   useEffect(() => {
-    console.log('mount');
-
     history.listen(() => {
       setActiveLinks(updateActiveLinks());
     });
@@ -27,9 +25,8 @@ const App: FC<{ history: History }> = ({ history }) => {
   return (
     <main className={styles.App}>
       <h1>About</h1>
-      <div className={styles.LogoTs} />
       <div className={styles.LogoReact} />
-
+      <div className={styles.LogoTs} />
       <Router history={history}>
         <nav>
           <NavLink

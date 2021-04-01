@@ -1,8 +1,8 @@
 <template>
   <div :class="$style.app">
     <h1>Dashboard</h1>
-    <div :class="$style.logoJs" />
     <div :class="$style.logoVue" />
+    <div :class="$style.logoJs" />
     <div :class="$style.nav">
       <router-link to="/dashboard/tab-1">Tab 1</router-link>
       <router-link to="/dashboard/tab-2">Tab 2</router-link>

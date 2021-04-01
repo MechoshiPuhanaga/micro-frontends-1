@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": ["es6", "dom"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "skipLibCheck": false,
+    "sourceMap": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "target": "es5",
+    "typeRoots": ["node_modules/@types"]
+  },
+  "exclude": ["node_modules", "src/main.ts", "server.js"]
+  // "angularCompilerOptions": {
+  //   "skipMetadataEmit": true,
+  //   "enableIvy": false
+  // }
+}

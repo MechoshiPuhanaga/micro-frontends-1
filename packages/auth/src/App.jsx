@@ -10,9 +10,8 @@ const App = ({ history }) => {
   return (
     <main className={styles.App}>
       <h1>Auth</h1>
-      <div className={styles.LogoJs} />
       <div className={styles.LogoReact} />
-
+      <div className={styles.LogoJs} />
       <Router history={history}>
         <nav>
           <NavLink
