@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { APP_BASE_HREF } from '@angular/common';
+import { NavigationEnd, Router } from '@angular/router';
+import { Observable, Observer } from 'rxjs';
+
+import observable from '../observable';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -15,4 +19,28 @@ import '../styles/index.scss';
   providers: [{ provide: APP_BASE_HREF, useValue: '/team' }],
   bootstrap: [AppComponent]
 })
+<<<<<<< Updated upstream
 export class AppModule {}
+=======
+export class AppModule {
+  constructor(private _router: Router) {
+    _router.events.subscribe((val) => {
+      if (val instanceof NavigationEnd) {
+        console.log(val);
+      }
+    });
+
+    observable.routerObservable = new Observable<object>(
+      (observer: Observer<object>) => {
+        observer.next({ _router });
+      }
+    );
+  }
+
+  public ngDoBootstrap(appRef: ApplicationRef): void {
+    if (document.querySelector('app-root')) {
+      appRef.bootstrap(AppComponent);
+    }
+  }
+}
+>>>>>>> Stashed changes

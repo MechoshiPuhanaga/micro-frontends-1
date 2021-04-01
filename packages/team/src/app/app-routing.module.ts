@@ -8,7 +8,9 @@ const appRoutes: Routes = [
     path: 'information',
     loadChildren: './modules/information/information.module#InformationModule'
   },
-  { path: 'address', loadChildren: './modules/menu/menu.module#MenuModule' }
+  { path: 'address', loadChildren: './modules/menu/menu.module#MenuModule' },
+  { path: 'team', component: HomeComponent },
+  { path: '**', component: HomeComponent }
 ];
 
 @NgModule({
