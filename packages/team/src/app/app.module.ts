@@ -1,10 +1,9 @@
 import { ApplicationRef, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { APP_BASE_HREF } from '@angular/common';
-import { NavigationEnd, Router } from '@angular/router';
-import { Observable, Observer } from 'rxjs';
+import { Router } from '@angular/router';
 
-import observable from '../observable';
+import cache from '../cache';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -21,17 +20,7 @@ import '../styles/index.scss';
 })
 export class AppModule {
   constructor(private _router: Router) {
-    _router.events.subscribe((val) => {
-      if (val instanceof NavigationEnd) {
-        console.log(val);
-      }
-    });
-
-    observable.routerObservable = new Observable<object>(
-      (observer: Observer<object>) => {
-        observer.next({ _router });
-      }
-    );
+    cache.router = _router;
   }
 
   public ngDoBootstrap(appRef: ApplicationRef): void {
