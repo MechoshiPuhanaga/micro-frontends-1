@@ -9,6 +9,8 @@ import observable from './observable';
 
 import { AppModule } from './app/app.module';
 
+let isPlatformSetup = false;
+
 const mount = (
   el: null,
   {
@@ -30,9 +32,10 @@ const mount = (
   if (process.env.NODE_ENV === 'development') {
     platformBrowserDynamic().bootstrapModule(AppModule);
   } else {
-    enableProdMode();
+    !isPlatformSetup && enableProdMode();
 
     platformBrowser().bootstrapModule(AppModule);
+    isPlatformSetup = true;
   }
 
   return {
