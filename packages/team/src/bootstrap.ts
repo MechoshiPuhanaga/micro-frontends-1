@@ -1,11 +1,11 @@
-import { enableProdMode } from '@angular/core';
+import { enableProdMode, NgZone } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { platformBrowser } from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import 'zone.js';
 import 'reflect-metadata';
 
-import cache from './cache';
+import routingProxy from './routingProxy';
 
 import { AppModule } from './app/app.module';
 
@@ -16,13 +16,19 @@ const mount = (
   {
     defaultHistory,
     initialPath,
-    onNavigate
+    onNavigate,
+    state
   }: {
     defaultHistory: object;
     initialPath: string;
-    onNavigate: () => {};
+    onNavigate: <T>(value: T) => {};
+    state: object;
   }
 ) => {
+  if (onNavigate) {
+    routingProxy.navigate = onNavigate;
+  }
+
   if (process.env.NODE_ENV === 'development') {
     platformBrowserDynamic().bootstrapModule(AppModule);
   } else {
@@ -34,7 +40,8 @@ const mount = (
 
   return {
     onParentNavigate: ({ pathname }: { pathname: string }) => {
-      cache.router?.navigateByUrl('/');
+      console.log('Parent navigates', state);
+      routingProxy.parentNavigateToUrl = pathname;
     }
   };
 };
@@ -43,7 +50,8 @@ if (process.env.NODE_ENV === 'development') {
   mount(null, {
     defaultHistory: {},
     initialPath: '',
-    onNavigate: null
+    onNavigate: null,
+    state: {}
   });
 }
 

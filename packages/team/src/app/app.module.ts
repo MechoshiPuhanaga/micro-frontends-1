@@ -1,9 +1,9 @@
 import { ApplicationRef, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { APP_BASE_HREF } from '@angular/common';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 
-import cache from '../cache';
+import routingProxy from '../routingProxy';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -20,7 +20,16 @@ import '../styles/index.scss';
 })
 export class AppModule {
   constructor(private _router: Router) {
-    cache.router = _router;
+    routingProxy.parentNavigate = (path) => {
+      console.log('parent path: ', path);
+      //_router.navigate([path], { skipLocationChange: true });
+    };
+
+    _router.events.subscribe((value) => {
+      if (value instanceof NavigationEnd) {
+        // routingProxy.navigateToUrl = value.url;
+      }
+    });
   }
 
   public ngDoBootstrap(appRef: ApplicationRef): void {

@@ -10,13 +10,14 @@ const TeamApp = () => {
   useEffect(() => {
     const { onParentNavigate } = mount(null, {
       initialPath: history?.location?.pathname || '',
-      onNavigate: (data) => {
+      onNavigate: (nextPathname) => {
         const { pathname } = history.location;
-        console.log('data: ', data);
-        // if (nextPathname !== pathname) {
-        //   history.push(nextPathname);
-        // }
-      }
+
+        if (nextPathname !== pathname) {
+          history.push(nextPathname);
+        }
+      },
+      state: history.state
     });
 
     if (history) {
