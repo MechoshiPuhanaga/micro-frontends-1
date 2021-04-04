@@ -38,9 +38,14 @@ const mount = (
     isPlatformSetup = true;
   }
 
+  routingProxy.parentNavigateToUrl = initialPath;
+
   return {
     onParentNavigate: ({ pathname }: { pathname: string }) => {
-      console.log('Parent navigates', state);
+      console.log(
+        'BOOTSTRAP onParentNavigate called, parentNavigateToUrl set',
+        pathname
+      );
       routingProxy.parentNavigateToUrl = pathname;
     }
   };
