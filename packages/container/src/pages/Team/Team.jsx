@@ -13,8 +13,9 @@ const TeamApp = () => {
       onNavigate: (nextPathname) => {
         const { pathname } = history.location;
         console.log(
-          'CONTAINER onNavigate called, nextPathname, pathname: ',
-          `${nextPathname} ${pathname}`
+          'POR CONTAINER onNavigate called, nextPathname, pathname: ',
+          nextPathname,
+          pathname
         );
         if (nextPathname !== pathname) {
           history.push(nextPathname);

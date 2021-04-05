@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     if (document.querySelector('app-root')) {
+      console.log('routingProxy.navigate: ', routingProxy.navigate);
       this.skipLocationChange = !!routingProxy.navigate;
     }
   }

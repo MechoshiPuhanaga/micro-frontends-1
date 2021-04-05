@@ -21,13 +21,15 @@ import '../styles/index.scss';
 export class AppModule {
   constructor(private _router: Router) {
     routingProxy.parentNavigate = (path) => {
-      console.log('ANGULAR parentNavigate called: ', path);
-      _router.navigate([path], { skipLocationChange: true });
+      console.log('POR ANGULAR parentNavigate called: ', path);
+
+      _router.navigateByUrl(path, { skipLocationChange: true });
     };
 
     _router.events.subscribe((value) => {
       if (value instanceof NavigationEnd) {
-        console.log('ANGULAR navigateToUrl set: ', value.url, this._router.url);
+        console.log('POR ANGULAR navigateToUrl set: ', value.url);
+
         // routingProxy.navigateToUrl = value.url;
       }
     });

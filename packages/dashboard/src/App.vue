@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.app">
-    <h1>Dashboard</h1>
+    <h1>Hello Dashboard</h1>
     <div :class="$style.logoVue" />
     <div :class="$style.logoJs" />
     <div :class="$style.nav">

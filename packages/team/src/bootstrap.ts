@@ -26,7 +26,7 @@ const mount = (
   }
 ) => {
   if (onNavigate) {
-    routingProxy.navigate = onNavigate;
+    // routingProxy.navigate = onNavigate;
   }
 
   if (process.env.NODE_ENV === 'development') {
@@ -38,12 +38,12 @@ const mount = (
     isPlatformSetup = true;
   }
 
-  routingProxy.parentNavigateToUrl = initialPath;
+  // routingProxy.parentNavigateToUrl = initialPath;
 
   return {
     onParentNavigate: ({ pathname }: { pathname: string }) => {
       console.log(
-        'BOOTSTRAP onParentNavigate called, parentNavigateToUrl set',
+        'POR BOOTSTRAP onParentNavigate called, parentNavigateToUrl set',
         pathname
       );
       routingProxy.parentNavigateToUrl = pathname;
