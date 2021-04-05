@@ -3,10 +3,33 @@
   <div class="logo-angular"></div>
   <div class="logo-ts"></div>
   <nav>
-    <a routerLink="/information" [routerLinkActive]="['is-active']"
+    <a
+      *ngIf="!skipLocationChange"
+      routerLink="/information"
+      [routerLinkActive]="['is-active']"
       >Information</a
     >
-    <a routerLink="/address" [routerLinkActive]="['is-active']">Address</a>
+    <a
+      *ngIf="!skipLocationChange"
+      routerLink="/address"
+      [routerLinkActive]="['is-active']"
+      >Address</a
+    >
+
+    <a
+      *ngIf="skipLocationChange"
+      skipLocationChange
+      routerLink="/team/information"
+      [routerLinkActive]="['is-active']"
+      >Information</a
+    >
+    <a
+      *ngIf="skipLocationChange"
+      skipLocationChange
+      routerLink="/team/address"
+      [routerLinkActive]="['is-active']"
+      >Address</a
+    >
   </nav>
   <router-outlet></router-outlet>
 </div>
