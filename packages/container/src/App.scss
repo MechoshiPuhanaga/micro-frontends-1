@@ -23,6 +23,12 @@
     text-shadow: 0 0 0.8rem $color14;
   }
 
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
   ul,
   li {
     margin: 0;

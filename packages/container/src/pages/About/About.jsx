@@ -2,6 +2,7 @@ import React, { memo, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { mount } from 'about/AboutApp';
+import { actionCreators, store } from '../../store';
 
 const AboutApp = () => {
   const root = useRef(null);
@@ -16,7 +17,9 @@ const AboutApp = () => {
         if (nextPathname !== pathname) {
           history.push(`/about${nextPathname}`);
         }
-      }
+      },
+      store,
+      actions: actionCreators
     });
 
     if (history) {

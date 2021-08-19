@@ -12,4 +12,22 @@
     background-position: center;
     background-image: url("#{$recourcePath}/image/home_page.png");
   }
+
+  .List {
+    width: 100%;
+
+    .ListEl {
+      display: inline-block;
+      margin: 1rem;
+      padding: 0.5rem;
+      font-size: 1.2rem;
+      border: 0.1rem solid $color2;
+      border-radius: 0.4rem;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $color3;
+      }
+    }
+  }
 }

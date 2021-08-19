@@ -1,6 +1,9 @@
 import { render } from 'react-dom';
-import { createBrowserHistory, createMemoryHistory, History, LocationListener } from 'history';
+import { createMemoryHistory, History, LocationListener } from 'history';
+import { Action, Store } from 'redux';
+import { Provider } from 'react-redux';
 
+import { DataProvider } from './providers';
 import App from './App';
 
 import './styles/index.scss';
@@ -12,11 +15,15 @@ const mount = (
   {
     defaultHistory,
     initialPath,
-    onNavigate
+    onNavigate,
+    store,
+    actions
   }: {
     defaultHistory: THistory;
     initialPath: string;
-    onNavigate: LocationListener<unknown> | null;
+    onNavigate: LocationListener<unknown>;
+    store: Store;
+    actions: { [key: string]: Action };
   }
 ) => {
   const history =
@@ -25,11 +32,16 @@ const mount = (
       initialEntries: [initialPath]
     });
 
-  if (typeof onNavigate === 'function') {
-    history.listen(onNavigate);
-  }
+  history.listen(onNavigate);
 
-  render(<App history={history} />, el);
+  render(
+    <Provider store={store}>
+      <DataProvider value={{ actions }}>
+        <App history={history} />
+      </DataProvider>
+    </Provider>,
+    el
+  );
 
   return {
     onParentNavigate: ({ pathname: newPathname }: { pathname: string }) => {
@@ -42,12 +54,12 @@ const mount = (
   };
 };
 
-if (process.env.NODE_ENV === 'development') {
-  const devRoot = document.getElementById('micro-frontend-about');
+// if (process.env.NODE_ENV === 'development') {
+//   const devRoot = document.getElementById('micro-frontend-about');
 
-  if (devRoot) {
-    mount(devRoot, { defaultHistory: createBrowserHistory(), initialPath: '', onNavigate: null });
-  }
-}
+//   if (devRoot) {
+//     mount(devRoot, { defaultHistory: createBrowserHistory(), initialPath: '', onNavigate: null });
+//   }
+// }
 
 export { mount };
