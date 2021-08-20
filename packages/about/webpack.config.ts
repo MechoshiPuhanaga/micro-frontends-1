@@ -141,7 +141,7 @@ module.exports = (env: string, argv: { mode: string }) => {
         exposes: {
           './AboutApp': './src/bootstrap'
         }
-        //shared: ['react', 'react-dom']
+        // shared: ['react', 'react-dom']
       }),
 
       // Speeds up TypeScript type checking and ESLint linting (by moving each to a separate process)

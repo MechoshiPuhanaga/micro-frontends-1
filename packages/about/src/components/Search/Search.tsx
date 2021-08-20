@@ -32,7 +32,7 @@ const Search: FC = (props) => {
       <div className={styles.Search}>
         <form onSubmit={onSubmit}>
           <input className={styles.Input} value={term} onChange={(e) => setTerm(e.target?.value)} />
-          <button className={styles.SubmitBtn}>Search</button>
+          <button className={styles.SubmitBtn}>Submit</button>
         </form>
         <ul className={styles.List}>
           {repositories?.data.map((repo: string) => (

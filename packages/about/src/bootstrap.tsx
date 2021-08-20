@@ -1,5 +1,5 @@
 import { render } from 'react-dom';
-import { createMemoryHistory, History, LocationListener } from 'history';
+import { createBrowserHistory, createMemoryHistory, History, LocationListener } from 'history';
 import { Action, Store } from 'redux';
 import { Provider } from 'react-redux';
 
@@ -7,6 +7,8 @@ import { DataProvider } from './providers';
 import App from './App';
 
 import './styles/index.scss';
+
+import { actionCreators, store } from './store';
 
 type THistory = History & { listen: Function };
 
@@ -54,12 +56,19 @@ const mount = (
   };
 };
 
-// if (process.env.NODE_ENV === 'development') {
-//   const devRoot = document.getElementById('micro-frontend-about');
+if (process.env.NODE_ENV === 'development') {
+  const devRoot = document.getElementById('micro-frontend-about');
 
-//   if (devRoot) {
-//     mount(devRoot, { defaultHistory: createBrowserHistory(), initialPath: '', onNavigate: null });
-//   }
-// }
+  if (devRoot) {
+    render(
+      <Provider store={store}>
+        <DataProvider value={{ actions: actionCreators }}>
+          <App history={createBrowserHistory()} />
+        </DataProvider>
+      </Provider>,
+      devRoot
+    );
+  }
+}
 
 export { mount };

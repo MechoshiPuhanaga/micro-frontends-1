@@ -1,7 +1,9 @@
 import { FC, createContext, useContext } from 'react';
 import { Action } from 'redux';
 
-const initialState: { actions: { [key: string]: Action } } = { actions: {} };
+const initialState: { actions: { [key: string]: Function } } = {
+  actions: { deleteRepository: () => {}, searchRepositories: () => {} }
+};
 
 export const ActionsContext = createContext(initialState);
 
