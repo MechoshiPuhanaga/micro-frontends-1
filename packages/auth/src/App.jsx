@@ -68,7 +68,9 @@ const App = ({ history }) => {
         <Suspense fallback={<div>Loading...</div>}>
           <Switch>
             <Route path={paths.login} component={LazyLogin} />
-            <Route path={paths.register} component={LazyRegister} />
+            <Route path={paths.register}>
+              <LazyRegister history={history} />
+            </Route>
           </Switch>
         </Suspense>
       </Router>

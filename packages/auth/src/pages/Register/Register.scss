@@ -1,3 +1,21 @@
 .Container {
-  background-color: $color3;
+  nav {
+    padding: 2rem 0 5rem 0;
+
+    .Link {
+      display: inline-block;
+      padding: 1.5rem;
+      margin: 0.5rem;
+      color: $color4;
+      font-size: 1.4rem;
+      background-color: $color9;
+      border: 1px solid $color8;
+      border-radius: 0.5rem;
+
+      &.LinkActive {
+        color: $color14;
+        box-shadow: 0 0.2rem 0.2rem $color14;
+      }
+    }
+  }
 }
