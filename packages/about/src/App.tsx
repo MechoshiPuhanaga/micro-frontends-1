@@ -1,27 +1,44 @@
-import { FC, memo, Suspense, useEffect, useCallback, useMemo, useState } from 'react';
+import { FC, memo, Suspense, useMemo } from 'react';
 import { NavLink, Route, Router, Switch } from 'react-router-dom';
 import { History } from 'history';
 
 import { LazyContacts, LazyProfile, LazySearch } from './components';
+import { LazyAuth } from './pages';
 
 import styles from './App.scss';
 
+const ROUTES = ['/auth', '/contacts', '/profile', '/search'];
+
 const App: FC<{ history: History }> = ({ history }) => {
-  const updateActiveLinks = useCallback(() => {
-    return {
-      profile: ['/profile', '/about/profile'].some((el) => el === history.location.pathname),
-      search: ['/search', '/about/search'].some((el) => el === history.location.pathname),
-      contacts: ['/contacts', '/about/contacts'].some((el) => el === history.location.pathname)
-    };
-  }, [history?.location?.pathname]);
+  const baseUrl = useMemo(() => {
+    let baseUrl = history.location.pathname;
 
-  const [activeLinks, setActiveLinks] = useState(updateActiveLinks());
+    for (let route of ROUTES) {
+      const lastIndexOfRoute = history.location.pathname.lastIndexOf(route);
 
-  useEffect(() => {
-    history.listen(() => {
-      setActiveLinks(updateActiveLinks());
-    });
+      if (lastIndexOfRoute !== -1) {
+        baseUrl = history.location.pathname.slice(0, lastIndexOfRoute);
+
+        break;
+      }
+    }
+
+    if (baseUrl === '/') {
+      baseUrl = '';
+    }
+
+    return baseUrl;
   }, []);
+
+  const paths = useMemo(
+    () => ({
+      auth: `${baseUrl}/auth`,
+      contacts: `${baseUrl}/contacts`,
+      profile: `${baseUrl}/profile`,
+      search: `${baseUrl}/search`
+    }),
+    [history?.location?.pathname]
+  );
 
   return (
     <main className={styles.App}>
@@ -31,29 +48,44 @@ const App: FC<{ history: History }> = ({ history }) => {
       <Router history={history}>
         <nav>
           <NavLink
-            className={`${styles.Link} ${activeLinks.profile ? styles.LinkActive : ''}`}
-            to="/profile"
+            activeClassName={styles.LinkActive}
+            className={styles.Link}
+            isActive={(_, location) => location.pathname.indexOf(paths.profile) === 0}
+            to={paths.profile}
           >
             Profile
           </NavLink>
           <NavLink
-            className={`${styles.Link} ${activeLinks.search ? styles.LinkActive : ''}`}
-            to="/search"
+            activeClassName={styles.LinkActive}
+            className={styles.Link}
+            isActive={(_, location) => location.pathname.indexOf(paths.search) === 0}
+            to={paths.search}
           >
             Search
           </NavLink>
           <NavLink
-            className={`${styles.Link} ${activeLinks.contacts ? styles.LinkActive : ''}`}
-            to="/contacts"
+            activeClassName={styles.LinkActive}
+            className={styles.Link}
+            isActive={(_, location) => location.pathname.indexOf(paths.contacts) === 0}
+            to={paths.contacts}
           >
             Contacts
+          </NavLink>
+          <NavLink
+            activeClassName={styles.LinkActive}
+            className={styles.Link}
+            isActive={(_, location) => location.pathname.indexOf(paths.auth) === 0}
+            to={paths.auth}
+          >
+            Auth
           </NavLink>
         </nav>
         <Suspense fallback={<div>Loading...</div>}>
           <Switch>
-            <Route path={['/profile', '/about/profile']} component={LazyProfile} />
-            <Route path={['/search', '/about/search']} component={LazySearch} />
-            <Route path={['/contacts', '/about/contacts']} component={LazyContacts} />
+            <Route path={paths.profile} component={LazyProfile} />
+            <Route path={paths.search} component={LazySearch} />
+            <Route path={paths.contacts} component={LazyContacts} />
+            <Route path={paths.auth} component={LazyAuth} />
           </Switch>
         </Suspense>
       </Router>

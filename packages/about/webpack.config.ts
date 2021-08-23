@@ -140,8 +140,13 @@ module.exports = (env: string, argv: { mode: string }) => {
         filename: 'remoteEntry.js',
         exposes: {
           './AboutApp': './src/bootstrap'
-        }
-        // shared: ['react', 'react-dom']
+        },
+        remotes: {
+          auth: isDev
+            ? 'auth@http://localhost:8081/remoteEntry.js'
+            : `auth@${process.env.PRODUCTION_DOMAIN}/auth/latest/remoteEntry.js`
+        },
+        shared: ['react', 'react-dom']
       }),
 
       // Speeds up TypeScript type checking and ESLint linting (by moving each to a separate process)

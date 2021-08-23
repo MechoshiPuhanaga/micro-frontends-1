@@ -1,25 +1,22 @@
-import React, { memo, useEffect, useRef } from 'react';
+import { memo, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { mount } from 'about/AboutApp';
-import { actionCreators, store } from '../../store';
+import { mount } from 'auth/AuthApp';
 
-const AboutApp = () => {
+const AuthApp = () => {
   const root = useRef(null);
   const history = useHistory();
 
   useEffect(() => {
     const { onParentNavigate } = mount(root.current, {
       initialPath: history?.location?.pathname || '',
-      onNavigate: ({ pathname: nextPathname }) => {
+      onNavigate: ({ pathname: nextPathname }: { pathname: string }) => {
         const { pathname } = history.location;
 
         if (nextPathname !== pathname) {
           history.push(nextPathname);
         }
-      },
-      store,
-      actions: actionCreators
+      }
     });
 
     if (history) {
@@ -30,4 +27,4 @@ const AboutApp = () => {
   return <div ref={root} />;
 };
 
-export default memo(AboutApp);
+export default memo(AuthApp);
