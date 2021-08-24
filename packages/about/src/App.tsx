@@ -5,39 +5,18 @@ import { History } from 'history';
 import { LazyContacts, LazyProfile, LazySearch } from './components';
 import { LazyAuth } from './pages';
 
+import { resolveUrl } from '../../../shared';
+
 import styles from './App.scss';
 
-const ROUTES = ['/auth', '/contacts', '/profile', '/search'];
-
 const App: FC<{ history: History }> = ({ history }) => {
-  const baseUrl = useMemo(() => {
-    let baseUrl = history.location.pathname;
-
-    for (let route of ROUTES) {
-      const lastIndexOfRoute = history.location.pathname.lastIndexOf(route);
-
-      if (lastIndexOfRoute !== -1) {
-        baseUrl = history.location.pathname.slice(0, lastIndexOfRoute);
-
-        break;
-      }
-    }
-
-    if (baseUrl === '/') {
-      baseUrl = '';
-    }
-
-    return baseUrl;
-  }, []);
-
-  const paths = useMemo(
-    () => ({
-      auth: `${baseUrl}/auth`,
-      contacts: `${baseUrl}/contacts`,
-      profile: `${baseUrl}/profile`,
-      search: `${baseUrl}/search`
-    }),
-    [history?.location?.pathname]
+  const { paths } = useMemo(
+    () =>
+      resolveUrl({
+        currentPath: history.location.pathname,
+        routes: ['auth', 'contacts', 'profile', 'search']
+      }),
+    [history.location.pathname]
   );
 
   return (

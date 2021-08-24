@@ -1,39 +1,19 @@
 import React, { memo, Suspense, useMemo } from 'react';
 import { NavLink, Route, Router, Switch } from 'react-router-dom';
 
+import { resolveUrl } from '../../../../../shared';
 import { LazyEmployee, LazyEmployer } from './components';
 
 import styles from './Register.scss';
 
-const ROUTES = ['/employee', '/employer'];
-
 const Register = ({ history }) => {
-  const baseUrl = useMemo(() => {
-    let baseUrl = history.location.pathname;
-
-    for (let route of ROUTES) {
-      const lastIndexOfRoute = history.location.pathname.lastIndexOf(route);
-
-      if (lastIndexOfRoute !== -1) {
-        baseUrl = history.location.pathname.slice(0, lastIndexOfRoute);
-
-        break;
-      }
-    }
-
-    if (baseUrl === '/') {
-      baseUrl = '';
-    }
-
-    return baseUrl;
-  }, []);
-
-  const paths = useMemo(
-    () => ({
-      employee: `${baseUrl}/employee`,
-      employer: `${baseUrl}/employer`
-    }),
-    [history?.location?.pathname]
+  const { paths } = useMemo(
+    () =>
+      resolveUrl({
+        currentPath: history.location.pathname,
+        routes: ['employee', 'employer']
+      }),
+    [history.location.pathname]
   );
 
   return (
