@@ -1,72 +1,67 @@
 {
-    "env": {
-      "browser": true,
-      "es6": true,
-      "node": true
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": ["plugin:react/recommended", "airbnb", "prettier"],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
     },
-    "extends": [
-      "plugin:react/recommended",
-      "airbnb",
-      "prettier",
-      "prettier/react"
-    ],
-    "globals": {
-      "Atomics": "readonly",
-      "SharedArrayBuffer": "readonly"
-    },
-    "parser": "babel-eslint",
-    "parserOptions": {
-      "ecmaFeatures": {
-        "jsx": true
-      },
-      "ecmaVersion": 2018,
-      "sourceType": "module"
-    },
-    "plugins": ["react", "react-hooks"],
-    "rules": {
-      "arrow-body-style": "off",
-      "arrow-parens": "off",
-      "comma-dangle": "off",
-      "consistent-return": "off",
-      "function-paren-newline": "off",
-      "func-names": "off",
-      "global-require": "off",
-      "implicit-arrow-linebreak": "off",
-      "import/extensions": "off",
-      "import/no-cycle": "off",
-      "import/no-dynamic-require": "off",
-      "import/no-mutable-exports": "off",
-      "import/no-named-as-default": "off",
-      "import/no-unresolved": "off",
-      "import/prefer-default-export": "off",
-      "indent": "off",
-      "jsx-a11y/no-noninteractive-element-to-interactive-role": "off",
-      "linebreak-style": "off",
-      "max-len": "warn",
-      "new-cap": "off",
-      "no-confusing-arrow": "off",
-      "no-console": "off",
-      "no-else-return": "off",
-      "no-nested-ternary": "off",
-      "no-param-reassign": "off",
-      "no-plusplus": "off",
-      "no-restricted-globals": "warn",
-      "no-shadow": "off",
-      "no-undef": "warn",
-      "no-underscore-dangle": "off",
-      "no-unused-expressions": "off",
-      "no-unused-vars": "warn",
-      "object-curly-newline": "off",
-      "operator-linebreak": "off",
-      "prefer-destructuring": "off",
-      "prefer-rest-params": "warn",
-      "react/prop-types": "off",
-      "react/jsx-curly-newline": "off",
-      "react/jsx-filename-extension": "off",
-      "react/jsx-props-no-spreading": "off",
-      "react/state-in-constructor": "off",
-      "react-hooks/rules-of-hooks": "error",
-      "react-hooks/exhaustive-deps": "warn",
-      "space-before-function-paren": "off"
-    }
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "react-hooks"],
+  "rules": {
+    "arrow-body-style": "off",
+    "arrow-parens": "off",
+    "comma-dangle": "off",
+    "consistent-return": "off",
+    "function-paren-newline": "off",
+    "func-names": "off",
+    "global-require": "off",
+    "implicit-arrow-linebreak": "off",
+    "import/extensions": "off",
+    "import/no-cycle": "off",
+    "import/no-dynamic-require": "off",
+    "import/no-mutable-exports": "off",
+    "import/no-named-as-default": "off",
+    "import/no-unresolved": "off",
+    "import/prefer-default-export": "off",
+    "indent": "off",
+    "jsx-a11y/no-noninteractive-element-to-interactive-role": "off",
+    "linebreak-style": "off",
+    "max-len": "warn",
+    "new-cap": "off",
+    "no-confusing-arrow": "off",
+    "no-console": "off",
+    "no-else-return": "off",
+    "no-nested-ternary": "off",
+    "no-param-reassign": "off",
+    "no-plusplus": "off",
+    "no-restricted-globals": "warn",
+    "no-shadow": "off",
+    "no-undef": "warn",
+    "no-underscore-dangle": "off",
+    "no-unused-expressions": "off",
+    "no-unused-vars": "warn",
+    "object-curly-newline": "off",
+    "operator-linebreak": "off",
+    "prefer-destructuring": "off",
+    "prefer-rest-params": "warn",
+    "react/prop-types": "off",
+    "react/jsx-curly-newline": "off",
+    "react/jsx-filename-extension": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/state-in-constructor": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "space-before-function-paren": "off"
   }
+}

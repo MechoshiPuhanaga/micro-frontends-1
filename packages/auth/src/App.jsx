@@ -1,12 +1,12 @@
 import React, { lazy, memo, Suspense, useMemo } from 'react';
 import { NavLink, Route, Router, Switch } from 'react-router-dom';
 
-const LazyLogin = lazy(() => import('./pages/Login/Login'));
-const LazyRegister = lazy(() => import('./pages/Register/Register'));
-
 import { resolveUrl } from '../../../shared';
 
 import styles from './App.scss';
+
+const LazyLogin = lazy(() => import('./pages/Login/Login'));
+const LazyRegister = lazy(() => import('./pages/Register/Register'));
 
 const App = ({ history }) => {
   const { paths } = useMemo(

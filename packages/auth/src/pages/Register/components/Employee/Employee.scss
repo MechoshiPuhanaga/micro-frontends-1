@@ -1,0 +1,47 @@
+.Employee {
+  .Form {
+    margin: 2rem 0;
+  }
+
+  .Input {
+    display: inline-block;
+    width: 20rem;
+    margin: 0 1rem;
+    padding: 0.5rem 1rem;
+    vertical-align: top;
+    color: $colorTxt;
+    font-size: 1.5em;
+    background-color: rgba($color9, 0.2);
+    border: 0.1rem solid $color9;
+    border-radius: 0.6rem;
+    outline: none;
+    box-shadow: 0 0.1rem 0 $color9;
+    transition: background-color 300ms linear;
+
+    &:focus,
+    :not(:empty) {
+      background-color: rgba($color4, 0.4);
+    }
+  }
+
+  .GoToBtn {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    vertical-align: top;
+    color: $color15;
+    font-size: 1.6rem;
+    font-weight: bold;
+    text-decoration: none;
+    background-color: $color4;
+    border: 0.1rem solid $color9;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.3rem 0 $color9, 0 0.3rem 1.5rem rgba($color1, 0.2),
+      inset 0 0.1rem 0 rgba($color9, 0.2), inset 0 0 0.3rem rgba($color9, 0.2);
+    transition: background-color 300ms linear;
+    cursor: pointer;
+
+    &:global(.active) {
+      background-color: $color4;
+    }
+  }
+}

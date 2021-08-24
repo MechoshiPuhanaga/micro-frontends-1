@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { createBrowserHistory, createMemoryHistory } from 'history';
 
 import App from './App';
@@ -30,6 +31,7 @@ const mount = (el, { defaultHistory, initialPath, onNavigate }) => {
   };
 };
 
+// eslint-disable-next-line no-undef
 if (__mode__ === 'development') {
   const devRoot = document.getElementById('micro-frontend-auth');
 
