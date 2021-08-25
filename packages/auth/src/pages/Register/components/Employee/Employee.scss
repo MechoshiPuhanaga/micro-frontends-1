@@ -6,7 +6,7 @@
   .Input {
     display: inline-block;
     width: 20rem;
-    margin: 0 1rem;
+    margin: 1rem;
     padding: 0.5rem 1rem;
     vertical-align: top;
     color: $colorTxt;
@@ -26,6 +26,7 @@
 
   .GoToBtn {
     display: inline-block;
+    margin: 1rem;
     padding: 0.4rem 1rem;
     vertical-align: top;
     color: $color15;
