@@ -35,7 +35,7 @@ module.exports = (env: string, argv: { mode: string }) => {
       // Otput root directory
       path: path.resolve(__dirname, 'dist'),
       // Tells webpack where to serve public assets from related to base url. In order to run index.html from Live Server just pass '/dist/'
-      publicPath: isDev ? 'http://localhost:8083/' : '/about/latest/'
+      publicPath: isDev ? 'http://10.0.2.2:8083/' : '/about/latest/'
     },
     resolve: {
       // Passes alias cofiguration object
@@ -143,7 +143,7 @@ module.exports = (env: string, argv: { mode: string }) => {
         },
         remotes: {
           auth: isDev
-            ? 'auth@http://localhost:8081/remoteEntry.js'
+            ? 'auth@http://10.0.2.2:8081/remoteEntry.js'
             : `auth@${process.env.PRODUCTION_DOMAIN}/auth/latest/remoteEntry.js`
         },
         shared: ['react', 'react-dom']

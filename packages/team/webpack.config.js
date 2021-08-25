@@ -30,7 +30,7 @@ module.exports = (env, argv) => {
         ? 'public/[name].chunk.js'
         : 'public/[name].chunk.[chunkhash].js',
       path: path.resolve(__dirname, 'dist'),
-      publicPath: isDev ? 'http://localhost:8084/' : '/team/latest/'
+      publicPath: isDev ? 'http://10.0.2.2:8084/' : '/team/latest/'
     },
     resolve: {
       extensions: ['.ts', '.js', '.scss']

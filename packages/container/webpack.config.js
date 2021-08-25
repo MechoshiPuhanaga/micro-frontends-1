@@ -112,16 +112,16 @@ module.exports = (env, argv) => {
         name: 'container',
         remotes: {
           auth: isDev
-            ? 'auth@http://localhost:8081/remoteEntry.js'
+            ? 'auth@http://10.0.2.2:8081/remoteEntry.js'
             : `auth@${process.env.PRODUCTION_DOMAIN}/auth/latest/remoteEntry.js`,
           dashboard: isDev
-            ? 'dashboard@http://localhost:8082/remoteEntry.js'
+            ? 'dashboard@http://10.0.2.2:8082/remoteEntry.js'
             : `dashboard@${process.env.PRODUCTION_DOMAIN}/dashboard/latest/remoteEntry.js`,
           about: isDev
-            ? 'about@http://localhost:8083/remoteEntry.js'
+            ? 'about@http://10.0.2.2:8083/remoteEntry.js'
             : `about@${process.env.PRODUCTION_DOMAIN}/about/latest/remoteEntry.js`,
           team: isDev
-            ? 'team@http://localhost:8084/remoteEntry.js'
+            ? 'team@http://10.0.2.2:8084/remoteEntry.js'
             : `team@${process.env.PRODUCTION_DOMAIN}/team/latest/remoteEntry.js`
         },
         shared: ['react', 'react-dom']
@@ -148,7 +148,7 @@ module.exports = (env, argv) => {
       hot: true,
       noInfo: true,
       open: true,
-      port: 8080,
+      port: 8090,
       stats: 'minimal'
     }
   };
