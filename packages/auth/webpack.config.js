@@ -17,6 +17,7 @@ const cssResourcesPath = require(path.join(
 
 module.exports = (env, argv) => {
   const isDev = argv.mode === 'development';
+  const isPWA = env.goal === 'pwa';
 
   const config = {
     entry: './src/index.js',
@@ -26,7 +27,9 @@ module.exports = (env, argv) => {
         ? 'public/[name].chunk.js'
         : 'public/[name].chunk.[chunkhash].js',
       path: path.resolve(__dirname, 'dist'),
-      publicPath: isDev ? 'http://10.0.2.2:8081/' : '/auth/latest/'
+      publicPath: isDev
+        ? `http://${isPWA ? '10.0.2.2' : 'localhost'}:8081/`
+        : '/auth/latest/'
     },
     resolve: {
       alias: {

@@ -16,8 +16,9 @@ import ModuleFederationPlugin from 'webpack/lib/container/ModuleFederationPlugin
 import cssResourcesPath from './src/styles/shared';
 import generateAliases from './aliases';
 
-module.exports = (env: string, argv: { mode: string }) => {
+module.exports = (env: { goal: string }, argv: { mode: string }) => {
   const isDev = argv.mode === 'development';
+  const isPWA = env.goal === 'pwa';
 
   const config = {
     entry: {
@@ -35,7 +36,7 @@ module.exports = (env: string, argv: { mode: string }) => {
       // Otput root directory
       path: path.resolve(__dirname, 'dist'),
       // Tells webpack where to serve public assets from related to base url. In order to run index.html from Live Server just pass '/dist/'
-      publicPath: isDev ? 'http://10.0.2.2:8083/' : '/about/latest/'
+      publicPath: isDev ? `http://${isPWA ? '10.0.2.2' : 'localhost'}:8083/` : '/about/latest/'
     },
     resolve: {
       // Passes alias cofiguration object
@@ -143,7 +144,7 @@ module.exports = (env: string, argv: { mode: string }) => {
         },
         remotes: {
           auth: isDev
-            ? 'auth@http://10.0.2.2:8081/remoteEntry.js'
+            ? `auth@http://${isPWA ? '10.0.2.2' : 'localhost'}:8081/remoteEntry.js`
             : `auth@${process.env.PRODUCTION_DOMAIN}/auth/latest/remoteEntry.js`
         },
         shared: ['react', 'react-dom']
