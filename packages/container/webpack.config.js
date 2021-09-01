@@ -157,7 +157,7 @@ module.exports = (env, argv) => {
       hot: true,
       noInfo: true,
       open: true,
-      port: 8090,
+      port: isPWA ? 8070 : 8090,
       stats: 'minimal'
     }
   };
