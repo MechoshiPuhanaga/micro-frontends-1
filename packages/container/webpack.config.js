@@ -4,8 +4,11 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 const path = require('path');
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+// const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const webpack = require('webpack');
+const WebpackAssetsManifest = require('webpack-assets-manifest');
+const WebpackPwaManifest = require('webpack-pwa-manifest');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const cssResourcesPath = require(path.join(
   __dirname,
@@ -49,12 +52,12 @@ module.exports = (env, argv) => {
           test: /\.jsx?$/,
           exclude: /node_modules/,
           use: {
-            loader: 'babel-loader',
-            options: {
-              plugins: [isDev && require.resolve('react-refresh/babel')].filter(
-                Boolean
-              )
-            }
+            loader: 'babel-loader'
+            // options: {
+            //   plugins: [isDev && require.resolve('react-refresh/babel')].filter(
+            //     Boolean
+            //   )
+            // }
           }
         },
         {
@@ -148,24 +151,67 @@ module.exports = (env, argv) => {
       }),
       new webpack.DefinePlugin({
         __mode__: JSON.stringify(argv.mode)
+      }),
+      new CopyWebpackPlugin({
+        patterns: [{ from: './src/workers/sw.js', to: '' }]
+      }),
+      new WebpackAssetsManifest({
+        customize(entry, original, manifest, asset) {
+          if (
+            asset.info.compressed ||
+            asset.name.endsWith('.map') ||
+            asset.name.endsWith('.txt')
+          ) {
+            return false;
+          } else {
+            return entry;
+          }
+        },
+        sortManifest: true
+      }),
+      new WebpackPwaManifest({
+        name: 'Form Builder',
+        short_name: 'form-builder',
+        description: 'Form Builder library',
+        background_color: 'blue',
+        crossorigin: 'use-credentials', //can be null, use-credentials or anonymous
+        icons: [
+          {
+            src: path.join(__dirname, 'src', 'favicon.png'),
+            sizes: [96, 128, 192, 256, 384, 512]
+          },
+          {
+            src: path.join(__dirname, 'src', 'favicon.png'),
+            size: '1024x1024'
+          },
+          {
+            src: path.join(__dirname, 'src', 'favicon.png'),
+            size: '1024x1024',
+            purpose: 'maskable'
+          }
+        ],
+        start_url: '.',
+        ios: true,
+        inject: true
       })
     ],
     devtool: isDev ? 'eval-source-map' : 'source-map',
     devServer: {
-      clientLogLevel: 'silent',
-      historyApiFallback: true,
+      client: {
+        logging: 'error',
+        overlay: true
+      },
+      compress: true,
       hot: true,
-      noInfo: true,
       open: true,
-      port: isPWA ? 8070 : 8090,
-      stats: 'minimal'
+      port: isPWA ? 8070 : 8090
     }
   };
 
   if (!isDev) {
     config.plugins.push(new CompressionPlugin());
   } else {
-    config.plugins.push(new ReactRefreshWebpackPlugin());
+    // config.plugins.push(new ReactRefreshWebpackPlugin());
   }
 
   return config;
